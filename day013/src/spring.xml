@@ -9,5 +9,10 @@
  	<bean id="uservice" class="com.user.UserService">
  		<property name="dao" ref="udao"></property>	<!-- DI (name은 UserDao setter의 parameter 이름, ref는 bean id) -->
  	</bean>
+ 	
+ 	<bean id="idao" class="com.item.ItemDao"></bean>
+ 	<bean id="iservice" class="com.item.ItemService">
+ 		<property name="dao" ref="idao"></property>
+ 	</bean>
     
 </beans>

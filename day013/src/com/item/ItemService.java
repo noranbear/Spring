@@ -1,10 +1,10 @@
-package com.user;
+package com.item;
 
 import java.util.List;
 
 import com.frame.Dao;
 import com.frame.Service;
-import com.vo.UserVo;
+import com.vo.ItemVo;
 
 /**
  * @author noranbear
@@ -14,28 +14,28 @@ import com.vo.UserVo;
  *
  *
  * =========================================================
- * 	    DATE			AUTHOR				   NOTE
+ * 	    DATE			 AUTHOR				    NOTE
  * ---------------------------------------------------------
  *  2022. 5. 26.		noranbear			    Fisrt
  *
  * =========================================================
  */
-public class UserService implements Service<String, UserVo> {
+public class ItemService implements Service<String, ItemVo> {
 
-	Dao<String, UserVo> dao;	// dao에 dependency injection을 해줘야함 -> getters and setters 생성
+	Dao<String, ItemVo> dao;
 	
 	// Getters and Setters
-	public Dao<String, UserVo> getDao() {
+	public Dao<String, ItemVo> getDao() {
 		return dao;
 	}
 
-	public void setDao(Dao<String, UserVo> dao) {	// spring.xml에 주입될 이름
+	public void setDao(Dao<String, ItemVo> dao) {
 		this.dao = dao;
 	}
 
-	// Overridng Method
+	// Overriding Methods
 	@Override
-	public void register(UserVo v) {
+	public void register(ItemVo v) {
 		dao.insert(v);
 	}
 
@@ -45,19 +45,18 @@ public class UserService implements Service<String, UserVo> {
 	}
 
 	@Override
-	public void modify(UserVo v) {
+	public void modify(ItemVo v) {
 		dao.update(v);
 	}
 
 	@Override
-	public UserVo get(String k) {
-		
+	public ItemVo get(String k) {
+
 		return dao.select(k);
 	}
 
 	@Override
-	public List<UserVo> get() {
-		
+	public List<ItemVo> get() {
 		return dao.select();
 	}
 
