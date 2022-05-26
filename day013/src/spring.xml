@@ -5,6 +5,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
  
  <!-- Beans -->
- 	
+ 	<bean id="udao" class="com.user.UserDao"></bean>
+ 	<bean id="uservice" class="com.user.UserService">
+ 		<property name="dao" ref="udao"></property>	<!-- DI (name은 UserDao setter의 parameter 이름, ref는 bean id) -->
+ 	</bean>
     
 </beans>
