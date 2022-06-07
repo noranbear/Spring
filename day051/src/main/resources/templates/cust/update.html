@@ -1,0 +1,20 @@
+<meta charset="UTF-8">
+
+<h1>Customer Info Update Page</h1>
+<div class="container">
+  <form action="updateimpl" method="POST">
+    <div class="form-group">
+      <label for="id">ID:</label>
+      <input type="text" class="form-control" name="id" th:value="${ucust.id}" readonly="readonly">
+    </div>
+    <div class="form-group">
+      <label for="pwd">PASSWORD:</label>
+      <input type="password" class="form-control" name="pwd" th:value="${ucust.name}">
+    </div>
+    <div class="form-group">
+      <label for="name">NAME:</label>
+      <input type="text" class="form-control" name="name" th:value="${ucust.pwd}">
+    </div>
+    <input type="submit" name="Update" class="btn btn-success"><br>
+  </form>
+</div>

@@ -1,0 +1,42 @@
+<meta charset="UTF-8">
+
+<style>
+#dlink:link, #dlink:visited,
+#ulink:link, #ulink:visited {
+	background-color: black;
+	color: white;
+	font-weight: bold;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 8px;
+}
+#dlink:hover, #dlink:active,
+#ulink:hover, #ulink:active {
+	background-color: grey;
+}
+</style>
+
+<h1>Customer Detail Page</h1>
+
+<div class="container">           
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td th:text="${dcust.id}">ID</td>
+        <td th:text="${dcust.name}">NAME</td>
+        <td th:text="${dcust.pwd}">PWD</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="dlink" href="#" th:href="@{/cust/delete(id=${dcust.id})}">Delete</a>
+  <a id="ulink" href="#" th:href="@{/cust/update(id=${dcust.id})}">Update</a>
+</div>

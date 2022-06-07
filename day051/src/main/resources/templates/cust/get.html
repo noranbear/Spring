@@ -1,0 +1,20 @@
+<meta charset="UTF-8">
+
+<h1>Customer Get Page</h1>
+<div class="container">         
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="c:${allcust}">
+        <td><a href="getcustdetail" th:href="@{/cust/getcustdetail(id=${c.id})}" th:text="${c.id}">ID</a></td>
+        <td th:text="${c.name}">NAME</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
