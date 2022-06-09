@@ -1,0 +1,52 @@
+<meta charset="utf-8">
+
+<script>
+$(document).ready(function(){
+	
+	// form의 내용을 보낸다.
+	$('#update').click(function(){
+		$('.user').attr({
+			'method':'post',
+			'action':'update'
+		});
+		// form(w/class) submit
+		$('.user').submit();
+	});
+});
+</script>
+
+
+<div class="col-lg-6">
+    <div class="p-5">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Cart Information</h1>
+        </div>
+        <form class="user">
+            <div class="form-group">
+                <input type="number" class="form-control form-control-item"
+                    name="id" value="id" th:value="${c.id}" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-item"
+                    name="uid" value="uid" th:value="${c.uid}" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control form-control-item"
+                    name="pid" value="pid" th:value="${c.pid}" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-item"
+                    name="regdate" value="00/00/00" 
+                    th:value="${#dates.format(c.regdate,'yyyy/MM/dd')}" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control form-control-item"
+                    name="cnt" value="cnt" th:value="${c.cnt}">
+            </div>
+            
+            <a id="update" href="#" class="btn btn-primary btn-user btn-block">
+                UPDATE
+            </a>
+        </form>
+    </div>
+</div>                 

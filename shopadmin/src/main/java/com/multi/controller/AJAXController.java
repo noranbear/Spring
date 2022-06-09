@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.multi.biz.CateBiz;
 import com.multi.biz.CustBiz;
+import com.multi.biz.ProductBiz;
 import com.multi.vo.CateVo;
 import com.multi.vo.CustVo;
+import com.multi.vo.ProductVo;
 
 /**
  * @author noranbear
@@ -30,6 +32,9 @@ public class AJAXController {
 	CustBiz cbiz;
 	
 	@Autowired
+	ProductBiz pbiz;
+	
+	@Autowired
 	CateBiz ctbiz;
 	
 	@RequestMapping("checkid")
@@ -39,6 +44,26 @@ public class AJAXController {
 		
 		try {
 			obj = cbiz.get(id);
+			// DB에 없는 값일 때 NULL을 보낸다는 것을 TEST로 확인했음.
+			if(obj == null) {
+				result = "0";
+			}else {
+				result = "1";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping("checkpid")
+	public String checkpid(int id) {
+		ProductVo obj = null;
+		String result = "";
+		
+		try {
+			obj = pbiz.get(id);
 			// DB에 없는 값일 때 NULL을 보낸다는 것을 TEST로 확인했음.
 			if(obj == null) {
 				result = "0";
@@ -71,4 +96,6 @@ public class AJAXController {
 		
 		return result;
 	}
+	
+	
 }

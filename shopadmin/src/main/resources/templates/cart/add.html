@@ -1,15 +1,15 @@
 <meta charset="utf-8">
 
 <script>
-function sendId(id){
+function sendUid(uid){
 	$.ajax({
-		url:'/checkcateid',
-		data:{'id': id},
+		url:'/checkid',
+		data:{'id': uid},
 		success:function(data){
 			if(data == '1'){
-				$('#ispan').text('사용 불가능한 ID');
+				$('#uspan').text('존재하는 유저');
 			}else{
-				$('#ispan').text('사용 가능한 ID');
+				$('#uspan').text('존재하지 않는 유저');
 			}
 		}
 	});
@@ -17,25 +17,25 @@ function sendId(id){
 
 function sendPid(pid){
 	$.ajax({
-		url:'/checkcateid',
+		url:'/checkpid',
 		data:{'id': pid},
 		success:function(data){
 			if(data == '1'){
-				$('#pspan').text('존재하는 카테고리');
+				$('#pspan').text('존재하는 제품');
 			}else{
-				$('#pspan').text('존재하지 않는 카테고리');
+				$('#pspan').text('존재하지 않는 제품');
 			}
 		}
 	});
-}
+};
 
 $(document).ready(function(){
 	
-	$('input[name="id"]').keyup(function(){
+	$('input[name="uid"]').keyup(function(){
 		// console.log('clicked');	확인용	
 		
-		var id = $(this).val();
-		sendId(id);
+		var uid = $(this).val();
+		sendUid(uid);
 	});
 	
 	$('input[name="pid"]').keyup(function(){
@@ -61,19 +61,19 @@ $(document).ready(function(){
 <div class="col-lg-6">
     <div class="p-5">
         <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">Category Add</h1>
+            <h1 class="h4 text-gray-900 mb-4">Add Cart</h1>
         </div>
         <form class="user">
             <div class="form-group">
-                ID: <span id="ispan"></span><input type="number" class="form-control form-control-item" name="id">
-            </div>
-            <div class="form-group">
-                NAME: <input type="text" class="form-control form-control-item" name="name">
+                UID: <span id="uspan"></span><input type="text" class="form-control form-control-item" name="uid">
             </div>
             <div class="form-group">
                 PID: <span id="pspan"></span><input type="number" class="form-control form-control-item" name="pid">
             </div>
-            
+            <div class="form-group">
+                CNT: <input type="number" class="form-control form-control-item" name="cnt">
+            </div>
+          	
             <a id="add" href="#" class="btn btn-primary btn-user btn-block">
                 ADD
             </a>

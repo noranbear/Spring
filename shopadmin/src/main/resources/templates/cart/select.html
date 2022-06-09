@@ -1,0 +1,41 @@
+ <!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Cart Tables</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>USER ID</th>
+                        <th>PRODUCT ID</th>
+                        <th>REGISTER DATE</th>
+                        <th>COUNT</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                       	<th>ID</th>
+                        <th>USER ID</th>
+                        <th>PRODUCT ID</th>
+                        <th>REGISTER DATE</th>
+                        <th>COUNT</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                	<!-- clist에서 c를 끄집어낸다. -->
+                    <tr th:each="c:${clist}">
+                    	<!-- /cust/detail?id=id01 -->
+                        <td><a href="" th:text="${c.id}" th:href="@{detail(id=${c.id})}">Id</a></td>
+                        <td th:text="${c.uid}">Uid</td>
+                        <td th:text="${c.pid}">Pid</td>
+                        <td th:text="${#dates.format(c.regdate,'yyyy/MM/dd')}">0000/00/00</td>
+                    	<td th:text="${c.cnt}">Cnt</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
