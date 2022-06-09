@@ -23,34 +23,21 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
+                        <th>ID</th>
+                        <th>PWD</th>
+                        <th>NAME</th>
+                        <th>ADDRESS</th>
+                        <th>REGDATE</th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    <tr>
-                        <td>id01</td>
-                        <td>pwd01</td>
-                        <td>Edinburgh</td>
-                        <td>Seoul</td>
-                        <td>2011/04/25</td>
-                    </tr>
-                    <tr>
-                        <td>id02</td>
-                        <td>pwd02</td>
-                        <td>burgh</td>
-                        <td>Seoul</td>
-                        <td>2012/04/25</td>
-                    </tr>
-                    <tr>
-                        <td>id03</td>
-                        <td>pwd03</td>
-                        <td>burghfad</td>
-                        <td>Seoul</td>
-                        <td>2012/05/25</td>
+                	<!-- clist에서 c를 끄집어낸다. -->
+                    <tr th:each="c:${clist}">
+                        <td th:text="${c.id}">id01</td>
+                        <td th:text="${c.pwd}">pwd01</td>
+                        <td th:text="${c.name}">Name</td>
+                        <td th:text="${c.addr}">Address</td>
+                        <td th:text="${#dates.format(c.regdate,'yyyy/MM/dd')}">0000/00/00</td>
                     </tr>
                 </tbody>
             </table>
