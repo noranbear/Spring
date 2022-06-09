@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.ProductMapper">
+<!-- com.mapper 밑에 UserDAO라는 인터페이스로 요청하면 밑에 줄들 호출 -->
+	
+	
+	<select id="select" parameterType="int" resultType="productVo">
+		SELECT p.id, p.name, p.price, p.regdate, p.cid, ct.name AS catename, p.imgname FROM product p
+INNER JOIN cate ct ON p.cid = ct.id WHERE p.ID=#{id}
+	</select>
+	<select id="selectall" resultType="productVo">
+		SELECT p.id, p.name, p.price, p.regdate, p.cid, ct.name AS catename, p.imgname FROM product p
+INNER JOIN cate ct ON p.cid = ct.id
+	</select>
+	
+	<select id="selectall2" resultType="productVo">
+		SELECT p.id, p.name, p.price, p.regdate, p.cid, ct.name AS catename, ct2.name AS maincatename, p.imgname FROM product p
+INNER JOIN cate ct ON p.cid = ct.id
+INNER JOIN cate ct2 ON ct.pid = ct2.id
+	</select>
+	<select id="selectavg" resultType="productAvgVo">
+		SELECT ct.name AS catename, AVG(p.price) AS avg
+FROM product p
+INNER JOIN cate ct ON p.cid = ct.id
+GROUP BY catename;
+	</select>
+	
+	<insert id="insert" parameterType="productVo">
+		INSERT INTO PRODUCT VALUES (#{id},#{name},#{price},SYSDATE(),#{cid},#{imgname})
+	</insert>
+	<update id="update" parameterType="productVo">
+		UPDATE PRODUCT SET NAME=#{name},PRICE=#{price},CID=#{cid},IMGNAME=#{imgname} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM PRODUCT WHERE ID=#{id}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+

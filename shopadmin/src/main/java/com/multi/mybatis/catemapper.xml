@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.CateMapper">
+<!-- com.mapper 밑에 UserDAO라는 인터페이스로 요청하면 밑에 줄들 호출 -->
+	
+	
+	<select id="select" parameterType="int" resultType="cateVo">
+		SELECT * FROM CATE WHERE ID=#{id}
+	</select>
+	<select id="selectall" resultType="cateVo">
+		SELECT * FROM CATE
+	</select>
+	<select id="selectmain" resultType="cateVo">
+		SELECT * FROM CATE WHERE pid IS NULL
+	</select>
+	
+	<insert id="insert" parameterType="cateVo">
+		<if test="pid != 0">
+			INSERT INTO CATE VALUES (#{id},#{name},#{pid})
+		</if>
+		<if test="pid == 0">
+			INSERT INTO CATE VALUES (#{id},#{name},NULL)
+		</if>
+	</insert>
+	<update id="update" parameterType="cateVo">
+		<if test="pid != 0">
+			UPDATE CATE SET NAME=#{name}, PID=#{pid} WHERE ID=#{id}
+		</if>
+		<if test="pid == 0">
+			UPDATE CATE SET NAME=#{name} WHERE ID=#{id}
+		</if>
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM CATE WHERE ID=#{id}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+

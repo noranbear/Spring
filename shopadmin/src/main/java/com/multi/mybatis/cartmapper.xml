@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.CartMapper">
+<!-- com.mapper 밑에 UserDAO라는 인터페이스로 요청하면 밑에 줄들 호출 -->
+	
+	
+	<select id="select" parameterType="int" resultType="cartVo">
+		SELECT ca.id, c.id AS uid, ct.name AS catename, p.id AS pid, p.name AS pname, p.price AS pprice, ca.regdate, ca.cnt FROM cart ca
+INNER JOIN cust c ON ca.uid = c.id
+INNER JOIN product p ON ca.pid = p.id
+INNER JOIN cate ct ON ct.id = p.cid
+WHERE ca.id=#{id}
+	</select>
+	<select id="selectall" resultType="cartVo">
+		SELECT ca.id, c.id AS uid, ct.name AS catename, p.id AS pid, p.name AS pname, p.price AS pprice, ca.regdate, ca.cnt FROM cart ca
+INNER JOIN cust c ON ca.uid = c.id
+INNER JOIN product p ON ca.pid = p.id
+INNER JOIN cate ct ON ct.id = p.cid
+	</select>
+	<insert id="insert" parameterType="cartVo">
+		INSERT INTO CART VALUES (NULL,#{uid},#{pid},CURDATE(),#{cnt})
+	</insert>
+	<update id="update" parameterType="cartVo">
+		UPDATE CART SET CNT=#{cnt} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM CART WHERE ID=#{id}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
