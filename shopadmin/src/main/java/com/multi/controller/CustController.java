@@ -31,6 +31,25 @@ public class CustController {
 	@Autowired
 	CustBiz biz;
 	
+	@RequestMapping("/add")
+	public String add(Model m) {
+		m.addAttribute("center", "cust/add");
+		return "index";
+	}
+	
+	@RequestMapping("/addimpl")
+	public String addimpl(Model m, CustVo obj) {
+		try {
+			biz.register(obj);
+			//obj = biz.get(obj.getId());
+			//m.addAttribute("c", obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		//m.addAttribute("center", "cust/detail");
+		return "redirect:detail?id="+obj.getId();
+	}
+	
 	@RequestMapping("/select")
 	public String select(Model m) {
 		List<CustVo> list = null;
