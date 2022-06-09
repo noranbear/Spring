@@ -44,4 +44,27 @@ public class CustController {
 		m.addAttribute("center", "cust/select");
 		return "/index";
 	}
+	
+	@RequestMapping("/detail")
+	public String detail(Model m, String id) {
+		CustVo obj = null;
+		try {
+			obj = biz.get(id);
+			m.addAttribute("c", obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		m.addAttribute("center", "cust/detail");
+		return "/index";
+	}
+	
+	@RequestMapping("/update")
+	public String update(Model m, CustVo obj) {
+		try {
+			biz.modify(obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:detail?id="+obj.getId();
+	}
 }
