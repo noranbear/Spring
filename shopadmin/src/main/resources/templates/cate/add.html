@@ -1,0 +1,82 @@
+<meta charset="utf-8">
+
+<script>
+function sendId(id){
+	$.ajax({
+		url:'/checkcateid',
+		data:{'id': id},
+		success:function(data){
+			if(data == '1'){
+				$('#ispan').text('사용 불가능한 ID');
+			}else{
+				$('#ispan').text('사용 가능한 ID');
+			}
+		}
+	});
+};
+
+function sendPid(pid){
+	$.ajax({
+		url:'/checkcateid',
+		data:{'id': pid},
+		success:function(data){
+			if(data == '1'){
+				$('#pspan').text('존재하는 카테고리');
+			}else{
+				$('#pspan').text('존재하지 않는 카테고리').color(red);
+			}
+		}
+	});
+}
+
+$(document).ready(function(){
+	
+	$('input[name="id"]').keyup(function(){
+		// console.log('clicked');	확인용	
+		
+		var id = $(this).val();
+		sendId(id);
+	});
+	
+	$('input[name="pid"]').keyup(function(){
+		// console.log('clicked');	확인용	
+		
+		var pid = $(this).val();
+		sendPid(pid);
+	});
+	
+	// form의 내용을 보낸다.
+	$('#register').click(function(){
+		$('.user').attr({
+			'method':'post',
+			'action':'addimpl'
+		});
+		// form(w/class) submit
+		$('.user').submit();
+	});
+});
+</script>
+
+
+<div class="col-lg-6">
+    <div class="p-5">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Category Add</h1>
+        </div>
+        <form class="user">
+            <div class="form-group">
+                ID: <span id="ispan"></span><input type="number" class="form-control form-control-item" name="id">
+            </div>
+            <div class="form-group">
+                NAME: <input type="text" class="form-control form-control-item" name="name">
+            </div>
+            <div class="form-group">
+                PID: <span id="pspan"></span><input type="number" class="form-control form-control-item" name="pid">
+            </div>
+            
+            <a id="register" href="#" class="btn btn-primary btn-user btn-block">
+                ADD
+            </a>
+        </form>
+    </div>
+</div>                 

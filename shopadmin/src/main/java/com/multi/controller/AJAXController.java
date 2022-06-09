@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.multi.biz.CateBiz;
 import com.multi.biz.CustBiz;
+import com.multi.vo.CateVo;
 import com.multi.vo.CustVo;
 
 /**
@@ -27,6 +29,9 @@ public class AJAXController {
 	@Autowired
 	CustBiz cbiz;
 	
+	@Autowired
+	CateBiz ctbiz;
+	
 	@RequestMapping("checkid")
 	public String checkid(String id) {
 		CustVo obj = null;
@@ -34,6 +39,26 @@ public class AJAXController {
 		
 		try {
 			obj = cbiz.get(id);
+			// DB에 없는 값일 때 NULL을 보낸다는 것을 TEST로 확인했음.
+			if(obj == null) {
+				result = "0";
+			}else {
+				result = "1";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping("checkcateid")
+	public String checkcateid(int id) {
+		CateVo obj = null;
+		String result = "";
+		
+		try {
+			obj = ctbiz.get(id);
 			// DB에 없는 값일 때 NULL을 보낸다는 것을 TEST로 확인했음.
 			if(obj == null) {
 				result = "0";

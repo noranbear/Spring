@@ -1,0 +1,35 @@
+ <!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Category Tables</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+						<th>NAME</th>
+                        <th>Parent ID</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+						<th>NAME</th>
+                        <th>Parent ID</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                	<!-- clist에서 c를 끄집어낸다. -->
+                    <tr th:each="c:${clist}">
+                    	<!-- /cate/detail?id=10 -->
+                        <td><a href="" th:text="${c.id}" th:href="@{detail(id=${c.id})}">Id</a></td>
+                        <td th:text="${c.name}">Name</td>
+                        <td th:text="${c.pid}">Pid</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
