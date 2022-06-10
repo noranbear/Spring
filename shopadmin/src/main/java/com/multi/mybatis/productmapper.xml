@@ -28,7 +28,7 @@ GROUP BY catename;
 	</select>
 	
 	<insert id="insert" parameterType="productVo">
-		INSERT INTO PRODUCT VALUES (#{id},#{name},#{price},SYSDATE(),#{cid},#{imgname})
+		INSERT INTO PRODUCT VALUES (NULL,#{name},#{price},SYSDATE(),#{cid},#{imgname})
 	</insert>
 	<update id="update" parameterType="productVo">
 		UPDATE PRODUCT SET NAME=#{name},PRICE=#{price},CID=#{cid},IMGNAME=#{imgname} WHERE ID=#{id}

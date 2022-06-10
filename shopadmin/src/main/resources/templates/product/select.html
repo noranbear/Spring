@@ -1,4 +1,9 @@
- <!-- Page Heading -->
+<style>
+	td > img{
+		width: 50px;
+	}
+</style>
+<!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Product Tables</h1>
 
 <!-- DataTales Example -->
@@ -24,7 +29,9 @@
                         <td th:text="${p.price}">Price</td>
                         <td th:text="${#dates.format(p.regdate,'yyyy/MM/dd')}">0000/00/00</td>
                         <td th:text="${p.catename}">Category</td>
-                        <td th:text="${p.imgname}">IMG</td>
+                        <td>
+                        	<img th:src="@{'/img/'+${p.imgname}}">
+                        </td>
                     </tr>
                 </tbody>
             </table>

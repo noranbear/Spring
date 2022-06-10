@@ -1,32 +1,11 @@
 <meta charset="utf-8">
 
 <script>
-function sendId(id){
-	$.ajax({
-		url:'/checkid',
-		data:{'id': id},
-		success:function(data){
-			if(data == '1'){
-				$('#ispan').text('사용 불가능한 ID');
-			}else{
-				$('#ispan').text('사용 가능한 ID');
-			}
-		}
-	});
-};
-
 $(document).ready(function(){
 	
-	$('input[name="id"]').keyup(function(){
-		// console.log('clicked');	확인용	
-		
-		var id = $(this).val();
-		sendId(id);
-	});
-	
-	// form의 내용을 보낸다.
 	$('#add').click(function(){
 		$('.user').attr({
+			'enctype':'multipart/form-data',
 			'method':'post',
 			'action':'addimpl'
 		});
@@ -59,7 +38,7 @@ $(document).ready(function(){
                 </select>
             </div>
             <div class="form-group">
-                IMG: <input type="file" class="form-control form-control-item" name="img">
+                IMG: <input type="file" class="form-control form-control-item" name="mf">
             </div>
             
             <a id="add" href="#" class="btn btn-primary btn-user btn-block">

@@ -2,6 +2,8 @@ package com.multi.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,7 +38,9 @@ public class ProductVo {
 	private String imgname;
 	private String catename;
 	private String maincatename;
-	
+	// 화면에서 파일을 전송할 때, 이곳에 담겨서 서버로 전송된다.
+	private MultipartFile mf;	
+	 
 	
 	public ProductVo(String name, int price, int cid, String imgname) {
 		this.name = name;
