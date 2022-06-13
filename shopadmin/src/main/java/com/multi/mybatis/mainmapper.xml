@@ -13,6 +13,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT count(*) FROM PRODUCT
 	</select>
 	
+	<select id="searchproduct" parameterType="String" resultType="productVo">
+		SELECT p.id, p.name, p.price, p.regdate, p.cid, ct.name AS catename, p.imgname FROM product p
+INNER JOIN cate ct ON p.cid = ct.id WHERE p.name LIKE CONCAT('%',#{txt},'%')
+	</select>
+	
 </mapper>
 
 

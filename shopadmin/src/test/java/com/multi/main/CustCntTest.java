@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.multi.controller.MainBiz;
+import com.multi.biz.MainBiz;
 
 @SpringBootTest
 class CustCntTest {

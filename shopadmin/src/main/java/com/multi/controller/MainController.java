@@ -1,9 +1,15 @@
 package com.multi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.multi.biz.MainBiz;
+import com.multi.biz.ProductBiz;
+import com.multi.vo.ProductVo;
 
 /**
  * @author noranbear
@@ -37,6 +43,21 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return "index";
+	}
+	
+	@RequestMapping("/search")
+	public String search(Model m, String txt) {
+		List<ProductVo> li = null;
+		
+		try {
+			li = biz.getproduct(txt);
+			m.addAttribute("splist", li);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		m.addAttribute("center", "search");
 		return "index";
 	}
 }
