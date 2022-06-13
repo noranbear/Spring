@@ -22,7 +22,9 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col-xl-4">
-                            <img id="main" th:src="@{'/img/'+${p.imgname}}">
+                        	<a th:href="@{/produdct/detail(id=${p.id})}">
+                           		<img id="main" th:src="@{'/img/'+${p.imgname}}">
+                            </a>
                         </div>
                         <div class="col-xl-8">
 	                        <div class="h5 font-weight-bold text-primary mb-0"

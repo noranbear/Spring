@@ -1,5 +1,9 @@
 package com.multi.controller;
 
+import java.util.List;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +13,7 @@ import com.multi.biz.CustBiz;
 import com.multi.biz.ProductBiz;
 import com.multi.vo.CateVo;
 import com.multi.vo.CustVo;
+import com.multi.vo.ProductAvgVo;
 import com.multi.vo.ProductVo;
 
 /**
@@ -36,6 +41,28 @@ public class AJAXController {
 	
 	@Autowired
 	CateBiz ctbiz;
+	
+	@RequestMapping("/chart1")
+	public Object chart1() {
+		// [{},{}]
+		JSONArray ja = new JSONArray();
+		List<ProductAvgVo> list = null;
+		
+		try {
+			list = pbiz.getAvg();
+			for (ProductAvgVo p : list) {
+				JSONObject jo = new JSONObject();
+				jo.put("name", p.getCatename());
+				jo.put("y", p.getAvg());
+				ja.add(jo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ja;
+	}
+	
 	
 	@RequestMapping("checkid")
 	public String checkid(String id) {
