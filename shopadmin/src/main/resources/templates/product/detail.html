@@ -1,0 +1,69 @@
+<meta charset="utf-8">
+
+<script>
+$(document).ready(function(){
+	
+	// form의 내용을 보낸다.
+	$('#update').click(function(){
+		$('.user').attr({
+			'enctype':'multipart/form-data',
+			'method':'post',
+			'action':'update'
+		});
+		// form(w/class) submit
+		$('.user').submit();
+	});
+});
+</script>
+<style>
+.form-group > img{
+	width:200px;
+}
+</style>
+
+<div class="col-lg-6">
+    <div class="p-5">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Customer Information</h1>
+        </div>
+        <form class="user">
+            <div class="form-group">
+                <img th:src="@{'/img/'+${dp.imgname}}">
+                <!-- 새로운 img를 선택 안 한 경우, 원래 것으로 다시 업데이트 -->
+                <input type="hidden" name="imgname" value="${dp.imgname}">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-item"
+                    name="id" value="id" th:value="${dp.id}" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-item"
+                    name="name" value="name" th:value="${dp.name}">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control form-control-item"
+                    name="price" value="price" th:value="${dp.price}">
+            </div>
+            <div class="form-group">
+                <select name="cid" class="form-control form-control-item">
+                	<option th:each="c:${clist}"
+                	th:if="${c.pid != 0}"
+                	th:value="${c.id}" 
+                	th:text="${c.name}"
+                	th:selected="${c.id}==${dp.cid}">
+                	</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-item"
+                    name="regdate" value="00/00/00" th:value="${#dates.format(dp.regdate,'yyyy/MM/dd')}">
+            </div>
+            <div class="form-group">
+                <input type="file" class="form-control form-control-item" name="mf">
+            </div>
+            <a id="update" href="#" class="btn btn-primary btn-user btn-block">
+                UPDATE
+            </a>
+        </form>
+    </div>
+</div>                 

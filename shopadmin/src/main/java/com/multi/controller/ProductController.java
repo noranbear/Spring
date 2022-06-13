@@ -57,6 +57,7 @@ public class ProductController {
 		// Constructor가 있으니 4개만으로 가능
 		String imgname = obj.getMf().getOriginalFilename();
 		obj.setImgname(imgname);
+		// 여러 개의 파일 한 번에 업로드 --> mf1, mf2, mf3 처럼 여러개를 만들면 된다.
 		
 		try {
 			biz.register(obj);
@@ -83,6 +84,42 @@ public class ProductController {
 		
 		m.addAttribute("center", "product/select");
 		return "/index";
+	}
+	
+	@RequestMapping("/detail")
+	public String detail(Model m, int id) {
+		ProductVo obj = null;
+		List<CateVo> list = null;
+		try {
+			list = ctbiz.get();
+			m.addAttribute("clist", list);
+			obj = biz.get(id);
+			m.addAttribute("dp", obj);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		m.addAttribute("center", "product/detail");
+		return "/index";
+	}
+	
+	@RequestMapping("/update")
+	public String update(Model m, ProductVo obj) {
+		
+		// 새로운 파일이 있는 경우
+		String iname = obj.getMf().getOriginalFilename();
+		if(!(iname.equals(""))) {
+			obj.setImgname(iname);
+			Util.saveFile(obj.getMf());
+		}
+
+		try {
+			biz.modify(obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:select";
 	}
 
 }
