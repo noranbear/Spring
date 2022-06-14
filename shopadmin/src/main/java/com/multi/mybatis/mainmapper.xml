@@ -18,6 +18,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 INNER JOIN cate ct ON p.cid = ct.id WHERE p.name LIKE CONCAT('%',#{txt},'%')
 	</select>
 	
+	<select id="getadmin" parameterType="String" resultType="adminVo">
+		SELECT * FROM ADMIN WHERE ID=#{id}
+	</select>
+	
 </mapper>
 
 

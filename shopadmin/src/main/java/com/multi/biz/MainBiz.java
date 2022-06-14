@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.multi.mapper.MainMapper;
+import com.multi.vo.AdminVo;
 import com.multi.vo.ProductVo;
 
 /**
@@ -38,5 +39,9 @@ public class MainBiz {
 	
 	public List<ProductVo> getproduct(String txt) throws Exception{
 		return dao.searchproduct(txt);
+	}
+	
+	public AdminVo getAdmin(String id) throws Exception{
+		return dao.getadmin(id);
 	}
 }

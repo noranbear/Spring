@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.multi.vo.AdminVo;
 import com.multi.vo.ProductVo;
 
 /**
@@ -29,4 +30,6 @@ public interface MainMapper {
 	public int getproductcnt() throws Exception;
 	
 	public List<ProductVo> searchproduct(String txt) throws Exception;
+	
+	public AdminVo getadmin(String id) throws Exception;
 }
